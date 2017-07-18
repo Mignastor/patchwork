@@ -12,9 +12,7 @@
 
 package ca.crim.spark.mllib.clustering
 
-import org.apache.spark.Logging
 import org.apache.spark.rdd.RDD
-import org.apache.spark.storage.StorageLevel
 
 import scala.collection.mutable.ListBuffer
 
@@ -122,9 +120,6 @@ class PatchWork(val epsilon: Epsilon, val minPts: Int, val ratio: Double, val mi
    * @return The model
    */
   def run(data: RDD[DataPoint]): PatchWorkModel = {
-    if (data.getStorageLevel == StorageLevel.NONE)
-      logWarning("The input data is not cached, which may impact performance.")
-
     runAlgorithm(data)
   }
 
